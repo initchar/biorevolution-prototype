@@ -53,8 +53,8 @@
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 200;
   padding: 8px var(--gutter);
-  background: var(--amber);
-  color: var(--forest-ink);
+  background: var(--leaf-green);
+  color: #fff;
   font-family: var(--font-narrow);
   font-weight: 600; font-size: 12px;
   letter-spacing: .18em; text-transform: uppercase;
