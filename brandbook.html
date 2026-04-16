@@ -1,0 +1,1803 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BioRevolution Coalition · Brand and Design System</title>
+  <meta name="description" content="Brand guidelines and design system for the BioRevolution Coalition. Biology, engineered for growth." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Archivo+Narrow:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Palette */
+      --forest-ink:   #112717;
+      --sage:         #596459;
+      --leaf-green:   #24B101;
+      --chartreuse:   #DBE801;
+      --cream:        #FFF7E4;
+      --amber:        #FFBF00;
+
+      /* Fossil-contrast greys */
+      --fossil-dark:  #2A2D2E;
+      --fossil-mid:   #5C5F60;
+      --fossil-light: #B8BABA;
+
+      /* Semantic */
+      --bg-default:    var(--cream);
+      --bg-inverse:    var(--forest-ink);
+      --text-default:  var(--forest-ink);
+      --text-inverse:  var(--cream);
+      --text-muted:    var(--sage);
+      --cta-bg:        var(--leaf-green);
+      --cta-text:      var(--forest-ink);
+      --cta-hover-bg:  var(--chartreuse);
+      --highlight:     var(--chartreuse);
+      --hairline:      rgba(17,39,23,.14);
+      --hairline-ink:  rgba(255,247,228,.18);
+
+      /* Type */
+      --font-sans:  "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --font-narrow:"Archivo Narrow", "Archivo", sans-serif;
+      --font-meta:  "Inter", "Archivo", sans-serif;
+
+      /* Motion */
+      --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+
+      /* Structure */
+      --gutter: clamp(24px, 4vw, 64px);
+      --max:    1280px;
+    }
+
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--text-default);
+      background: var(--bg-default);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* --- Section shell --- */
+    section.bk {
+      padding: clamp(72px, 12vh, 160px) var(--gutter);
+      position: relative;
+      overflow: hidden;
+    }
+    section.bk.dark {
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+    }
+    section.bk.light {
+      background: var(--bg-default);
+      color: var(--text-default);
+    }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+
+    /* --- Running header --- */
+    .running {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: clamp(40px, 6vh, 80px);
+      opacity: .85;
+    }
+    .running .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--leaf-green);
+      display: inline-block;
+      margin: 0 10px 2px;
+      vertical-align: middle;
+    }
+    .dark .running { color: var(--cream); }
+    .dark .running .dot { background: var(--chartreuse); }
+
+    /* --- Section label + number --- */
+    .label {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .dark .label { color: var(--chartreuse); }
+    .label::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: currentColor;
+      display: inline-block;
+      opacity: .7;
+    }
+
+    /* --- Type styles --- */
+    .h0 {
+      font-weight: 900;
+      font-size: clamp(64px, 11vw, 168px);
+      line-height: .92;
+      letter-spacing: -.03em;
+      margin: 0;
+    }
+    .h1 {
+      font-weight: 900;
+      font-size: clamp(44px, 6.2vw, 96px);
+      line-height: .96;
+      letter-spacing: -.02em;
+      margin: 0 0 .4em;
+    }
+    .h2 {
+      font-weight: 800;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      margin: 0 0 .6em;
+    }
+    .h3 {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 1.2;
+      margin: 0 0 .4em;
+    }
+    .lead {
+      font-weight: 600;
+      font-size: clamp(19px, 1.6vw, 22px);
+      line-height: 1.4;
+      max-width: 60ch;
+      margin: 0 0 1em;
+    }
+    .body p { max-width: 64ch; margin: 0 0 1em; }
+    .muted { color: var(--text-muted); }
+    .dark .muted { color: rgba(255,247,228,.6); }
+
+    .caption {
+      font-family: var(--font-meta);
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: .04em;
+      color: var(--sage);
+    }
+    .dark .caption { color: rgba(255,247,228,.55); }
+
+    /* --- Hairline dividers --- */
+    .rule {
+      height: 1px; background: var(--hairline); border: 0;
+      margin: clamp(40px, 6vh, 72px) 0;
+    }
+    .dark .rule { background: var(--hairline-ink); }
+
+    /* --- COVER --- */
+    .cover {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: var(--gutter);
+      background: var(--forest-ink);
+      color: var(--cream);
+      position: relative;
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      right: -10%;
+      top: -5%;
+      width: 70%;
+      height: 110%;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><defs><clipPath id='hx'><polygon points='300,30 540,170 540,430 300,570 60,430 60,170'/></clipPath></defs></svg>");
+      opacity: .0;
+      pointer-events: none;
+    }
+    .cover-head,
+    .cover-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,247,228,.7);
+    }
+    .cover-mark {
+      display: flex; align-items: center; gap: 14px;
+      color: var(--cream);
+    }
+    .cover-main {
+      align-self: center;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 48px;
+      align-items: center;
+    }
+    .cover-foot .v { color: var(--chartreuse); }
+    @media (max-width: 880px) {
+      .cover-main { grid-template-columns: 1fr; }
+      .cover-art { order: -1; opacity: .8; }
+    }
+    .cover h1.display {
+      font-weight: 900;
+      font-size: clamp(56px, 9.5vw, 168px);
+      line-height: .88;
+      letter-spacing: -.035em;
+      margin: 0;
+    }
+    .cover h1.display em {
+      font-style: normal;
+      color: var(--chartreuse);
+    }
+    .cover .tagline {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--chartreuse);
+      margin-top: 40px;
+    }
+    .cover .deck {
+      font-weight: 600;
+      font-size: clamp(19px, 1.6vw, 22px);
+      margin-top: 24px;
+      max-width: 42ch;
+      color: rgba(255,247,228,.82);
+    }
+
+    /* --- Contents --- */
+    .toc { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px 32px; }
+    .toc dt {
+      grid-column: 1 / 2;
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .22em;
+      color: var(--sage);
+      padding-top: 8px;
+    }
+    .toc dd {
+      grid-column: 2 / -1;
+      margin: 0;
+      padding: 8px 0;
+      font-weight: 600;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: -.01em;
+      border-top: 1px solid var(--hairline);
+    }
+    .toc a { color: inherit; text-decoration: none; }
+    .toc a:hover { color: var(--leaf-green); }
+
+    /* --- Two-col layouts --- */
+    .two {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+    }
+    @media (max-width: 880px) { .two { grid-template-columns: 1fr; } }
+
+    .three {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(24px, 3vw, 48px);
+    }
+    @media (max-width: 880px) { .three { grid-template-columns: 1fr; } }
+
+    /* --- Logo sheet --- */
+    .logo-sheet {
+      background: var(--cream);
+      padding: clamp(48px, 8vh, 96px);
+      border: 1px solid var(--hairline);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 280px;
+    }
+    .logo-sheet.dark { background: var(--forest-ink); border-color: var(--hairline-ink); }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 720px) { .logo-grid { grid-template-columns: 1fr; } }
+
+    .clear-space {
+      position: relative;
+      padding: clamp(32px, 5vh, 64px);
+      background: var(--cream);
+      border: 1px solid var(--hairline);
+    }
+    .cs-inner {
+      position: relative;
+      outline: 1px dashed rgba(17,39,23,.3);
+      padding: 48px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cs-inner::before, .cs-inner::after,
+    .cs-inner > span::before, .cs-inner > span::after {
+      content: "x";
+      position: absolute;
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--sage);
+      letter-spacing: .12em;
+    }
+    .cs-inner::before { top: -10px; left: 50%; transform: translateX(-50%); }
+    .cs-inner::after { bottom: -10px; left: 50%; transform: translateX(-50%); }
+    .cs-inner > span::before { left: -12px; top: 50%; transform: translateY(-50%); }
+    .cs-inner > span::after { right: -12px; top: 50%; transform: translateY(-50%); }
+
+    /* --- Swatches --- */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 880px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+    .swatch {
+      border: 1px solid var(--hairline);
+      display: flex; flex-direction: column;
+    }
+    .dark .swatch { border-color: var(--hairline-ink); }
+    .swatch .chip {
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+    .swatch .meta {
+      padding: 14px 16px 18px;
+      background: var(--cream);
+      color: var(--forest-ink);
+    }
+    .dark .swatch .meta { background: var(--forest-ink); color: var(--cream); border-top: 1px solid var(--hairline-ink); }
+    .swatch .name {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -.005em;
+    }
+    .swatch .hex {
+      font-family: var(--font-meta);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .dark .swatch .hex { color: rgba(255,247,228,.55); }
+    .swatch .role {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 10px;
+    }
+
+    /* --- Pair (do/don't) --- */
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+    .card {
+      border: 1px solid var(--hairline);
+      padding: 24px;
+      background: var(--cream);
+    }
+    .dark .card { border-color: var(--hairline-ink); background: var(--forest-ink); }
+    .card .tag {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tag.ok   { color: var(--leaf-green); }
+    .tag.no   { color: #B0190F; }
+    .tag.ok::before, .tag.no::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* --- Type specimen --- */
+    .specimen {
+      display: grid;
+      grid-template-columns: 140px 1fr 180px;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--hairline);
+      align-items: baseline;
+    }
+    .dark .specimen { border-color: var(--hairline-ink); }
+    .specimen .tag {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .dark .specimen .tag { color: rgba(255,247,228,.55); }
+    .specimen .sample { line-height: 1; }
+    .specimen .meta {
+      font-family: var(--font-meta);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: var(--sage);
+      text-align: right;
+    }
+    .dark .specimen .meta { color: rgba(255,247,228,.5); }
+
+    .sample-900 { font-weight: 900; font-size: clamp(40px, 6vw, 88px); letter-spacing: -.02em; }
+    .sample-800 { font-weight: 800; font-size: clamp(28px, 4vw, 48px); letter-spacing: -.01em; }
+    .sample-600 { font-weight: 600; font-size: 22px; }
+    .sample-400 { font-weight: 400; font-size: 18px; line-height: 1.4; }
+
+    .weight-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    @media (max-width: 880px) { .weight-row { grid-template-columns: repeat(2, 1fr); } }
+    .weight {
+      border-top: 1px solid var(--hairline);
+      padding-top: 16px;
+    }
+    .dark .weight { border-color: var(--hairline-ink); }
+    .weight .w { font-size: 44px; line-height: 1; letter-spacing: -.01em; }
+    .weight .m {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 12px;
+    }
+
+    /* --- Strapline lockup --- */
+    .lockup {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .lockup .one {
+      font-weight: 900;
+      font-size: clamp(56px, 8vw, 120px);
+      line-height: .9;
+      letter-spacing: -.03em;
+    }
+    .lockup .rule-line {
+      width: 40%;
+      min-width: 120px;
+      height: 1px;
+      background: var(--sage);
+    }
+    .dark .lockup .rule-line { background: var(--chartreuse); }
+    .lockup .two-l {
+      font-weight: 800;
+      font-size: clamp(18px, 2.2vw, 28px);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .dark .lockup .two-l { color: var(--chartreuse); }
+
+    /* --- Motifs --- */
+    .motif-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 880px) { .motif-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .motif-grid { grid-template-columns: 1fr; } }
+    .motif {
+      border: 1px solid var(--hairline);
+      padding: 24px;
+      background: var(--cream);
+    }
+    .dark .motif { border-color: var(--hairline-ink); background: rgba(255,247,228,.02); }
+    .motif .frame {
+      aspect-ratio: 1 / 1;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--cream);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .dark .motif .frame { background: var(--forest-ink); }
+
+    /* --- Components --- */
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 26px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--cta-bg);
+      color: var(--cta-text);
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 150ms var(--ease-organic), color 150ms var(--ease-organic);
+    }
+    .btn:hover { background: var(--cta-hover-bg); }
+    .btn:focus-visible { outline: 2px solid var(--chartreuse); outline-offset: 2px; }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1.5px solid var(--leaf-green);
+      color: var(--leaf-green);
+    }
+    .btn.secondary:hover { background: var(--leaf-green); color: var(--forest-ink); }
+
+    .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* Hex card */
+    .hex-card {
+      position: relative;
+      padding: 32px;
+      background: var(--cream);
+      border: 1.5px solid var(--leaf-green);
+      overflow: hidden;
+      min-height: 220px;
+    }
+    .dark .hex-card { background: transparent; border-color: var(--leaf-green); }
+    .hex-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--voronoi-bg);
+      background-size: cover;
+      opacity: .08;
+      transition: opacity 250ms var(--ease-organic);
+      pointer-events: none;
+    }
+    .hex-card:hover::before { opacity: .22; }
+    .hex-card .n {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 12px;
+    }
+    .dark .hex-card .n { color: var(--chartreuse); }
+    .hex-card h4 {
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -.005em;
+      margin: 0 0 .5em;
+    }
+    .hex-card p { margin: 0; font-size: 15px; line-height: 1.5; }
+
+    /* Stat block */
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stat .lbl {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .dark .stat .lbl { color: var(--chartreuse); }
+    .stat .num {
+      font-weight: 900;
+      font-size: clamp(72px, 10vw, 140px);
+      line-height: .9;
+      letter-spacing: -.02em;
+      color: var(--leaf-green);
+    }
+    .dark .stat .num { color: var(--chartreuse); }
+    .stat .desc {
+      font-weight: 600;
+      font-size: 20px;
+      max-width: 36ch;
+    }
+    .stat .src {
+      font-family: var(--font-meta);
+      font-size: 12px;
+      color: var(--sage);
+      opacity: .8;
+    }
+    .dark .stat .src { color: rgba(255,247,228,.5); }
+
+    /* Progress bar */
+    .progress {
+      margin-top: 24px;
+    }
+    .progress .count {
+      font-weight: 900;
+      font-size: clamp(48px, 7vw, 72px);
+      line-height: 1;
+      color: var(--leaf-green);
+      letter-spacing: -.02em;
+    }
+    .dark .progress .count { color: var(--chartreuse); }
+    .progress .track {
+      height: 24px;
+      background: rgba(89,100,89,.2);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 18px;
+    }
+    .dark .progress .track { background: rgba(255,247,228,.08); }
+    .progress .fill {
+      height: 100%;
+      width: 64%;
+      background: var(--leaf-green);
+    }
+    .progress .cap {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 12px;
+    }
+    .dark .progress .cap { color: rgba(255,247,228,.6); }
+
+    /* Section header demo */
+    .section-header-demo {
+      display: flex; align-items: center; gap: 18px;
+      padding: 28px 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .dark .section-header-demo { border-color: var(--hairline-ink); }
+    .section-header-demo .mark { width: 40px; height: 40px; flex-shrink: 0; }
+    .section-header-demo h3 {
+      font-weight: 800;
+      font-size: clamp(28px, 3.2vw, 40px);
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    /* Mode strip */
+    .mode {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--hairline);
+    }
+    @media (max-width: 720px) { .mode { grid-template-columns: 1fr; } }
+    .dark .mode { border-color: var(--hairline-ink); }
+    .mode > div {
+      padding: clamp(28px, 4vw, 48px);
+      min-height: 220px;
+    }
+    .mode .m-light { background: var(--cream); color: var(--forest-ink); }
+    .mode .m-dark  { background: var(--forest-ink); color: var(--cream); }
+    .mode .m-list { font-family: var(--font-meta); font-size: 14px; line-height: 1.6; margin: 16px 0 0; padding: 0; list-style: none; }
+    .mode .m-list li::before { content: "·"; margin-right: 10px; opacity: .6; }
+
+    /* Application (hero sample) */
+    .app-hero {
+      background: var(--forest-ink);
+      color: var(--cream);
+      padding: clamp(40px, 6vw, 72px);
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 40px;
+      border: 1px solid var(--hairline-ink);
+    }
+    @media (max-width: 880px) {
+      .app-hero { grid-template-columns: 1fr; }
+      .app-hero-art { order: -1; opacity: .7; }
+    }
+    .app-hero .small {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--chartreuse);
+      margin-bottom: 24px;
+    }
+
+    /* Voice cards */
+    .voice-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+      border: 1px solid var(--hairline);
+    }
+    .dark .voice-row { background: var(--hairline-ink); border-color: var(--hairline-ink); }
+    @media (max-width: 720px) { .voice-row { grid-template-columns: 1fr; } }
+    .voice {
+      padding: 28px;
+      background: var(--cream);
+    }
+    .dark .voice { background: var(--forest-ink); }
+    .voice .axis {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 12px;
+    }
+    .dark .voice .axis { color: var(--chartreuse); }
+    .voice .yes { font-weight: 800; font-size: 22px; color: var(--forest-ink); }
+    .dark .voice .yes { color: var(--cream); }
+    .voice .no {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--sage);
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+      margin-top: 6px;
+    }
+    .dark .voice .no { color: rgba(255,247,228,.45); }
+
+    /* Writing rule list */
+    .rules-list { list-style: none; padding: 0; margin: 0; }
+    .rules-list li {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 18px;
+      padding: 20px 0;
+      border-top: 1px solid var(--hairline);
+      font-size: 17px;
+    }
+    .dark .rules-list li { border-color: var(--hairline-ink); }
+    .rules-list li:last-child { border-bottom: 1px solid var(--hairline); }
+    .dark .rules-list li:last-child { border-color: var(--hairline-ink); }
+    .rules-list .num {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      color: var(--sage);
+      padding-top: 4px;
+    }
+    .rules-list strong { font-weight: 800; }
+
+    /* Colophon */
+    .colophon {
+      background: var(--forest-ink);
+      color: var(--cream);
+      padding: clamp(64px, 10vh, 120px) var(--gutter);
+    }
+    .colophon .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    @media (max-width: 720px) { .colophon .grid { grid-template-columns: repeat(2, 1fr); } }
+    .colophon h5 {
+      font-family: var(--font-narrow);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--chartreuse);
+      margin: 0 0 16px;
+    }
+    .colophon p { margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,247,228,.75); }
+
+    /* Utility */
+    .pad-t { padding-top: clamp(40px, 6vh, 72px); }
+    .pad-b { padding-bottom: clamp(40px, 6vh, 72px); }
+    .small { font-size: 14px; }
+    .tight { max-width: 42ch; }
+    .kbd {
+      font-family: var(--font-meta);
+      font-weight: 500;
+      font-size: 12px;
+      padding: 3px 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 3px;
+      background: rgba(17,39,23,.04);
+    }
+    .dark .kbd { border-color: var(--hairline-ink); background: rgba(255,247,228,.06); }
+
+    /* SVG color helpers */
+    .leaf { color: var(--leaf-green); }
+    .char { color: var(--chartreuse); }
+    .amb  { color: var(--amber); }
+    .ink  { color: var(--forest-ink); }
+    .cr   { color: var(--cream); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================= COVER ========================= -->
+<section class="cover" id="cover">
+  <header class="cover-head">
+    <div class="cover-mark">
+      <img src="Images/Mono%20logo%20for%20dark%20background.png" alt="BioRevolution Coalition" style="height: 40px; width: auto;" />
+    </div>
+    <div>Brand &amp; Design System</div>
+  </header>
+
+  <div class="cover-main">
+    <div>
+      <h1 class="display">Biology,<br/><em>engineered</em><br/>for growth.</h1>
+      <div class="deck">The brand and design system for the BioRevolution Coalition. A single source of truth for identity, typography, motif, voice, and application.</div>
+      <div class="tagline">Volume 01 · Edition 2026.04</div>
+    </div>
+
+    <!-- Signature composition: hex + voronoi + mycelium -->
+    <div class="cover-art">
+      <svg viewBox="0 0 600 600" width="100%" height="auto" aria-hidden="true">
+        <defs>
+          <clipPath id="hexClip">
+            <polygon points="300,30 540,170 540,430 300,570 60,430 60,170" />
+          </clipPath>
+        </defs>
+
+        <!-- Hex keyline -->
+        <polygon points="300,30 540,170 540,430 300,570 60,430 60,170"
+                 fill="none" stroke="#DBE801" stroke-width="3" />
+
+        <!-- Voronoi fill inside hex -->
+        <g clip-path="url(#hexClip)" stroke="#DBE801" stroke-width="2" fill="none" opacity=".9">
+          <path d="M60 170 L 170 190 L 240 120 L 300 30"/>
+          <path d="M170 190 L 230 260 L 150 320 L 80 280 L 60 170"/>
+          <path d="M230 260 L 320 230 L 380 160 L 430 90 L 300 30"/>
+          <path d="M320 230 L 410 310 L 470 240 L 540 170 L 430 90"/>
+          <path d="M150 320 L 210 390 L 140 440 L 70 380 L 80 280"/>
+          <path d="M210 390 L 300 380 L 340 460 L 260 510 L 140 440"/>
+          <path d="M300 380 L 400 390 L 460 460 L 420 540 L 340 460"/>
+          <path d="M400 390 L 470 320 L 540 300 L 540 430 L 460 460"/>
+          <path d="M410 310 L 470 320 L 470 240"/>
+          <path d="M230 260 L 320 230"/>
+          <path d="M260 510 L 300 570 L 420 540"/>
+          <path d="M70 380 L 60 430 L 140 440"/>
+          <path d="M300 30 L 300 230 L 410 310"/>
+        </g>
+
+        <!-- Mycelium bleed off bottom-right -->
+        <g stroke="#24B101" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".95">
+          <path d="M360 360 C 420 380, 460 430, 520 480 C 555 510, 580 540, 600 560"/>
+          <path d="M430 400 C 460 430, 480 470, 520 500"/>
+          <path d="M470 420 C 490 450, 510 470, 540 490"/>
+          <path d="M400 420 C 430 470, 470 510, 520 560"/>
+          <path d="M340 400 C 360 460, 390 510, 430 560"/>
+          <path d="M480 460 C 500 480, 520 490, 540 500"/>
+          <circle cx="520" cy="500" r="3" fill="#24B101" stroke="none"/>
+          <circle cx="480" cy="460" r="2" fill="#24B101" stroke="none"/>
+          <circle cx="540" cy="540" r="2.5" fill="#24B101" stroke="none"/>
+        </g>
+
+        <!-- Amber slash -->
+        <line x1="80" y1="540" x2="170" y2="480" stroke="#FFBF00" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- White brushstroke accents -->
+        <g stroke="#FFF7E4" stroke-width="1.5" stroke-linecap="round" opacity=".8">
+          <path d="M120 100 l 20 2"/>
+          <path d="M130 110 l 14 -1"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <footer class="cover-foot">
+    <span>Resource Media</span>
+    <span><span class="v">v2.0</span> · 15 April 2026</span>
+  </footer>
+</section>
+
+
+<!-- ========================= CONTENTS ========================= -->
+<section class="bk light" id="contents">
+  <div class="wrap">
+    <div class="running">
+      <span>BioRevolution Coalition<span class="dot"></span>Brand System</span>
+      <span>Contents</span>
+    </div>
+
+    <span class="label">Contents</span>
+    <h2 class="h1">Twelve sections. One system.</h2>
+    <p class="lead muted tight">This book is the working agreement between everyone who writes, designs, codes or speaks for the coalition. Read it once. Refer to it often.</p>
+
+    <dl class="toc pad-t">
+      <dt>01</dt><dd><a href="#essence">Brand essence</a></dd>
+      <dt>02</dt><dd><a href="#logo">Logo</a></dd>
+      <dt>03</dt><dd><a href="#colour">Colour</a></dd>
+      <dt>04</dt><dd><a href="#type">Typography</a></dd>
+      <dt>05</dt><dd><a href="#lockup">Strapline lockup</a></dd>
+      <dt>06</dt><dd><a href="#motif">Motif system</a></dd>
+      <dt>07</dt><dd><a href="#duality">Light and dark duality</a></dd>
+      <dt>08</dt><dd><a href="#components">Components</a></dd>
+      <dt>09</dt><dd><a href="#voice">Voice and tone</a></dd>
+      <dt>10</dt><dd><a href="#writing">Writing rules</a></dd>
+      <dt>11</dt><dd><a href="#application">Application</a></dd>
+      <dt>12</dt><dd><a href="#plan">Website build plan</a></dd>
+    </dl>
+  </div>
+</section>
+
+
+<!-- ========================= 01 ESSENCE ========================= -->
+<section class="bk dark" id="essence">
+  <div class="wrap">
+    <div class="running">
+      <span>01 · Essence<span class="dot"></span>Positioning</span>
+      <span>Biology, engineered for growth</span>
+    </div>
+
+    <span class="label">01 Brand essence</span>
+    <h2 class="h1">We are not a green campaign.<br/>We are an industrial strategy<br/>written in <em style="color:var(--chartreuse); font-style:normal;">carbon</em>.</h2>
+
+    <div class="two pad-t">
+      <div>
+        <h3 class="label" style="color:var(--chartreuse)">Positioning</h3>
+        <p class="body">The BioRevolution Coalition argues that the UK's next industrial chapter is biological. Not a retreat from industry but a redesign of its carbon supply. Plants and microbes as feedstock. Chemistry and policy as the engine. Growth as the outcome.</p>
+        <p class="body muted">This is not climate marketing. It is an economic brief, told with the confidence of a white paper and the edge of a campaign.</p>
+      </div>
+
+      <div>
+        <h3 class="label" style="color:var(--chartreuse)">Audiences</h3>
+        <div class="three" style="gap:24px">
+          <div>
+            <div class="stat"><span class="lbl">Citizens</span></div>
+            <p class="small muted pad-t">Sign the petition. Tone: plainspoken, urgent, practical.</p>
+          </div>
+          <div>
+            <div class="stat"><span class="lbl">Industry</span></div>
+            <p class="small muted pad-t">Join the coalition. Tone: confident, commercial, specific.</p>
+          </div>
+          <div>
+            <div class="stat"><span class="lbl">Politicians</span></div>
+            <p class="small muted pad-t">Champion the policy. Tone: authoritative, evidenced, short.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <div class="two">
+      <div>
+        <h3 class="label" style="color:var(--chartreuse)">Tension</h3>
+        <p class="body">Every strong brand holds two ideas in tension. Ours is precision and life. Chemistry and forest. Hexagon and mycelium. The design system makes this tension visible on every page.</p>
+      </div>
+      <div>
+        <h3 class="label" style="color:var(--chartreuse)">Promise</h3>
+        <p class="body">A coalition brief you can hand to a minister, a journalist or a school friend and have it land the same way: this is serious, this is urgent, and this is where the UK should go next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 02 LOGO ========================= -->
+<section class="bk light" id="logo">
+  <div class="wrap">
+    <div class="running">
+      <span>02 · Logo<span class="dot"></span>Identity mark</span>
+      <span>Primary and mono</span>
+    </div>
+
+    <span class="label">02 Logo</span>
+    <h2 class="h1">One mark. Two surfaces.<br/>No exceptions.</h2>
+    <p class="lead muted tight">The logo is a hex mark paired with the wordmark. It exists in full colour for light surfaces and in mono for dark. Every other variant is a misuse.</p>
+
+    <div class="logo-grid pad-t">
+      <div class="logo-sheet">
+        <img src="Images/BioRevolution%20Coalition.png" alt="BioRevolution Coalition primary logo, hex mark with leaf pattern plus wordmark" />
+      </div>
+      <div class="logo-sheet dark">
+        <img src="Images/Mono%20logo%20for%20dark%20background.png" alt="BioRevolution Coalition mono logo on Forest Ink background" />
+      </div>
+    </div>
+
+    <div class="three pad-t">
+      <div>
+        <h4 class="h3">Primary use</h4>
+        <p class="body small muted">Full colour on Cream, Sage-adjacent or light backgrounds. Default for all web, print and press.</p>
+      </div>
+      <div>
+        <h4 class="h3">Mono use</h4>
+        <p class="body small muted">Cream-on-ink only. Never grey, never black. Reserved for Forest Ink backgrounds and dark hero contexts.</p>
+      </div>
+      <div>
+        <h4 class="h3">Minimum size</h4>
+        <p class="body small muted">120px wide on screen. 24mm wide in print. Below this, use the hex mark alone.</p>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- Clear space -->
+    <div class="two">
+      <div>
+        <h3 class="h2">Clear space</h3>
+        <p class="body">The minimum clear space around the logo equals the height of the hex mark's vertex distance. No copy, image or mark should encroach inside this zone.</p>
+      </div>
+      <div class="clear-space">
+        <div class="cs-inner">
+          <span>
+            <img src="Images/BioRevolution%20Coalition.png" alt="" style="max-width: 260px; width: 100%;" />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- Misuse -->
+    <h3 class="h2">Misuse</h3>
+    <div class="pair">
+      <div class="card">
+        <div class="tag ok">Correct</div>
+        <div class="logo-sheet" style="padding:32px; min-height:160px;">
+          <img src="Images/BioRevolution%20Coalition.png" alt="" style="max-width:260px;" />
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag no">Never</div>
+        <ul class="body small" style="margin:0; padding-left: 18px;">
+          <li>Do not recolour the hex mark to any non-brand colour.</li>
+          <li>Do not rotate, skew, or italicise the wordmark.</li>
+          <li>Do not place the full colour logo on busy imagery without a solid backing.</li>
+          <li>Do not redraw the hex mark. Use the supplied master files.</li>
+          <li>Do not use the mono logo on Cream. Use the primary.</li>
+          <li>Do not stack the wordmark above the hex. Horizontal lockup only.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 03 COLOUR ========================= -->
+<section class="bk dark" id="colour">
+  <div class="wrap">
+    <div class="running">
+      <span>03 · Colour<span class="dot"></span>Palette</span>
+      <span>Six colours, one ratio</span>
+    </div>
+
+    <span class="label">03 Colour</span>
+    <h2 class="h1">Six colours. A strict ratio.<br/><em style="font-style:normal;color:var(--chartreuse);">No drift.</em></h2>
+    <p class="lead muted tight">The palette is closed. Every surface in the system should be resolvable to one of these six hexes. When in doubt, use less colour.</p>
+
+    <div class="pad-t">
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip" style="background: var(--forest-ink);"></div>
+          <div class="meta">
+            <div class="name">Forest Ink</div>
+            <div class="hex">#112717</div>
+            <div class="role">Primary dark · body type on cream</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: var(--sage);"></div>
+          <div class="meta">
+            <div class="name">Sage</div>
+            <div class="hex">#596459</div>
+            <div class="role">Muted · captions · secondary</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: var(--leaf-green);"></div>
+          <div class="meta">
+            <div class="name">Leaf Green</div>
+            <div class="hex">#24B101</div>
+            <div class="role">CTA · progress · identity</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: var(--chartreuse);"></div>
+          <div class="meta">
+            <div class="name">Chartreuse</div>
+            <div class="hex">#DBE801</div>
+            <div class="role">Accent on ink · highlight</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: var(--cream); border-bottom: 1px solid var(--hairline-ink);"></div>
+          <div class="meta">
+            <div class="name">Cream</div>
+            <div class="hex">#FFF7E4</div>
+            <div class="role">Default light background</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: var(--amber);"></div>
+          <div class="meta">
+            <div class="name">Amber</div>
+            <div class="hex">#FFBF00</div>
+            <div class="role">Decoration only · never UI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Supporting greys</h3>
+    <p class="body muted tight" style="margin-bottom:24px">Reserved for fossil contrast: comparison diagrams and case studies only. Do not use as general UI greys.</p>
+
+    <div class="swatches" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="swatch">
+        <div class="chip" style="background: var(--fossil-dark);"></div>
+        <div class="meta"><div class="name">Fossil Dark</div><div class="hex">#2A2D2E</div><div class="role">Fossil column · dark</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--fossil-mid);"></div>
+        <div class="meta"><div class="name">Fossil Mid</div><div class="hex">#5C5F60</div><div class="role">Fossil annotation</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--fossil-light);"></div>
+        <div class="meta"><div class="name">Fossil Light</div><div class="hex">#B8BABA</div><div class="role">Fossil keyline</div></div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Colour rules</h3>
+    <ol class="rules-list">
+      <li><span class="num">01</span><span><strong>Body text is always Forest Ink on Cream, or Cream on Forest Ink.</strong> Nothing else. This rule is not stylistic, it is accessibility.</span></li>
+      <li><span class="num">02</span><span><strong>Leaf Green fails WCAG AA for body text on Cream.</strong> Use for CTAs, buttons, progress fill and graphic elements only. Never under 18px type on a light surface.</span></li>
+      <li><span class="num">03</span><span><strong>Chartreuse is near-invisible on Cream.</strong> Use only on Forest Ink. It is the highlight colour of the dark mode.</span></li>
+      <li><span class="num">04</span><span><strong>Amber is decoration.</strong> Never CTA, never link, never state. One amber slash at most per section.</span></li>
+      <li><span class="num">05</span><span><strong>Sage is for muted copy only.</strong> Captions, source lines, form hints. Not primary body.</span></li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ========================= 04 TYPE ========================= -->
+<section class="bk light" id="type">
+  <div class="wrap">
+    <div class="running">
+      <span>04 · Typography<span class="dot"></span>Archivo</span>
+      <span>Four weights plus narrow</span>
+    </div>
+
+    <span class="label">04 Typography</span>
+    <h2 class="h1">Archivo does the work.<br/>Inter handles the metadata.</h2>
+    <p class="lead muted tight">A single sans-serif system carries the brand. Archivo for every surface the reader sees. Archivo Narrow for stat labels only. Inter is reserved for interface chrome: captions, source citations, code samples.</p>
+
+    <div class="pad-t">
+      <h3 class="h2">Weights</h3>
+      <div class="weight-row">
+        <div class="weight"><div class="w" style="font-weight:400;">Aa</div><div class="m">Archivo 400 · Body</div></div>
+        <div class="weight"><div class="w" style="font-weight:600;">Aa</div><div class="m">Archivo 600 · Lead · buttons</div></div>
+        <div class="weight"><div class="w" style="font-weight:800;">Aa</div><div class="m">Archivo 800 · H2 · Subhead</div></div>
+        <div class="weight"><div class="w" style="font-weight:900;">Aa</div><div class="m">Archivo 900 · Display · Stats</div></div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Type scale</h3>
+
+    <div class="specimen">
+      <div class="tag">H1 Display</div>
+      <div class="sample sample-900">Biology, engineered for growth.</div>
+      <div class="meta">Archivo 900<br/>64 / 40 · -2%</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">H2</div>
+      <div class="sample sample-800">A roadmap for a UK BioRevolution</div>
+      <div class="meta">Archivo 800<br/>40 / 28 · -1%</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">H3</div>
+      <div class="sample sample-600">Bio-based carbon, in ninety seconds.</div>
+      <div class="meta">Archivo 600<br/>24 / 20 · 0</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Lead</div>
+      <div class="sample sample-600">Support the transition to bio-based carbon for the future economy.</div>
+      <div class="meta">Archivo 600<br/>22 / 19 · 0</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Body</div>
+      <div class="sample sample-400">Carbon is a building block of modern life. Today, most of it comes from fossil fuels. The technology to replace it with biological alternatives exists, works, and is deployable now. What is missing is a coherent policy signal.</div>
+      <div class="meta">Archivo 400<br/>18 / 17 · lh 1.55</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Stat</div>
+      <div class="sample" style="font-weight:900; font-size:96px; letter-spacing:-.02em; color:var(--leaf-green); line-height:.9;">£0.5 bn</div>
+      <div class="meta">Archivo 900<br/>120–160 · +2%</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Stat label</div>
+      <div class="sample" style="font-family:var(--font-narrow); font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--sage); font-size:13px;">Annual innovation gap, UK bio-based sector</div>
+      <div class="meta">Archivo Narrow 600<br/>13 · +8%</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Button</div>
+      <div class="sample"><a class="btn" href="#">Sign the petition</a></div>
+      <div class="meta">Archivo 600<br/>16 · +6% caps</div>
+    </div>
+    <div class="specimen">
+      <div class="tag">Caption</div>
+      <div class="sample caption">Source: BEIS, Bio-based Economy Review 2024</div>
+      <div class="meta">Inter 400<br/>13 · +4%</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 05 STRAPLINE LOCKUP ========================= -->
+<section class="bk dark" id="lockup">
+  <div class="wrap">
+    <div class="running">
+      <span>05 · Lockup<span class="dot"></span>Strapline</span>
+      <span>Reserved treatment</span>
+    </div>
+
+    <span class="label">05 Strapline lockup</span>
+    <h2 class="h1">A single lockup. Used only for the strapline.</h2>
+    <p class="lead muted tight">The strapline is set as a two-part lockup. A typographic signature. It appears in the hero, in the closing CTA, and on social cards. It never appears as a generic H1 or headline treatment elsewhere.</p>
+
+    <div class="pad-t" style="padding: 72px 0;">
+      <div class="lockup">
+        <div class="one">Biology,</div>
+        <div class="rule-line"></div>
+        <div class="two-l">Engineered for growth</div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <div class="two">
+      <div>
+        <h3 class="h2">On Cream</h3>
+        <div style="background: var(--cream); padding: 48px; color: var(--forest-ink);">
+          <div class="lockup">
+            <div class="one">Biology,</div>
+            <div class="rule-line" style="background: var(--sage);"></div>
+            <div class="two-l" style="color: var(--forest-ink);">Engineered for growth</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="h2">Construction</h3>
+        <ol class="rules-list">
+          <li><span class="num">A</span><span>"Biology," in Archivo 900, sentence case, with the trailing comma.</span></li>
+          <li><span class="num">B</span><span>A 1px horizontal rule, 40% of the word width. Sage on Cream. Chartreuse on Ink.</span></li>
+          <li><span class="num">C</span><span>"ENGINEERED FOR GROWTH" in Archivo 800, tracked +10%, UPPERCASE.</span></li>
+          <li><span class="num">D</span><span>No other H1s in the system use this treatment. Other H1s take the plain Archivo 900 form.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 06 MOTIF ========================= -->
+<section class="bk light" id="motif">
+  <div class="wrap">
+    <div class="running">
+      <span>06 · Motif<span class="dot"></span>Visual system</span>
+      <span>Hex · Voronoi · Mycelium</span>
+    </div>
+
+    <span class="label">06 Motif system</span>
+    <h2 class="h1">Three motifs. Two accents.<br/>Nothing else.</h2>
+    <p class="lead muted tight">The library is deliberately narrow. Hex as container. Voronoi as precision. Mycelium as growth. Amber and white brushstrokes as rare inflection. Discipline is the visual identity.</p>
+
+    <div class="pad-t">
+      <h3 class="h2">Primary motifs</h3>
+      <div class="motif-grid">
+        <div class="motif">
+          <div class="frame">
+            <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+              <polygon points="100,10 180,55 180,145 100,190 20,145 20,55" fill="none" stroke="#112717" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="h3">Hexagon</div>
+          <p class="caption">The master container. Six treatments available: solid, outline, double-keyline, pattern-fill, gradient, standalone mark.</p>
+        </div>
+        <div class="motif">
+          <div class="frame">
+            <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+              <defs><clipPath id="hxc2"><polygon points="100,10 180,55 180,145 100,190 20,145 20,55"/></clipPath></defs>
+              <polygon points="100,10 180,55 180,145 100,190 20,145 20,55" fill="none" stroke="#24B101" stroke-width="2"/>
+              <g clip-path="url(#hxc2)" stroke="#24B101" stroke-width="1.5" fill="none">
+                <path d="M20 55 L 60 70 L 90 40 L 100 10"/>
+                <path d="M60 70 L 80 110 L 40 130 L 20 90"/>
+                <path d="M80 110 L 120 100 L 140 60 L 170 40"/>
+                <path d="M120 100 L 150 130 L 170 110 L 180 55"/>
+                <path d="M40 130 L 70 160 L 50 180 L 20 145"/>
+                <path d="M70 160 L 110 155 L 130 180 L 100 190"/>
+                <path d="M110 155 L 150 150 L 170 180 L 180 145"/>
+                <path d="M150 130 L 150 150"/>
+                <path d="M130 180 L 150 180"/>
+              </g>
+            </svg>
+          </div>
+          <div class="h3">Voronoi mesh</div>
+          <p class="caption">The primary pattern fill. Reads as chemistry, molecular structure, precision. Applied inside hex at 8% to 22% opacity.</p>
+        </div>
+        <div class="motif">
+          <div class="frame">
+            <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+              <g stroke="#596459" stroke-width="2" fill="none" stroke-linecap="round">
+                <path d="M100 20 C 90 50, 110 80, 100 110 C 95 130, 80 150, 60 170"/>
+                <path d="M100 60 C 120 80, 140 90, 160 100"/>
+                <path d="M100 110 C 120 120, 140 140, 170 160"/>
+                <path d="M100 70 C 80 90, 60 100, 40 110"/>
+                <path d="M100 130 C 80 150, 60 160, 30 170"/>
+                <path d="M100 100 C 110 140, 120 180, 130 190"/>
+                <circle cx="100" cy="20" r="3" fill="#596459" stroke="none"/>
+                <circle cx="160" cy="100" r="2.5" fill="#596459" stroke="none"/>
+                <circle cx="170" cy="160" r="2.5" fill="#596459" stroke="none"/>
+                <circle cx="30" cy="170" r="2" fill="#596459" stroke="none"/>
+                <circle cx="40" cy="110" r="2" fill="#596459" stroke="none"/>
+                <circle cx="60" cy="170" r="2" fill="#596459" stroke="none"/>
+              </g>
+            </svg>
+          </div>
+          <div class="h3">Mycelium branching</div>
+          <p class="caption">An organic overlay. Bleeds off the canvas edge. Reads as growth, life, biology reclaiming space.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Inflection accents</h3>
+    <p class="body muted tight" style="margin-bottom:24px">Use at most once per section. More than twice on a page and the system starts shouting.</p>
+
+    <div class="motif-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="motif">
+        <div class="frame">
+          <svg viewBox="0 0 200 120" width="80%" aria-hidden="true">
+            <line x1="30" y1="90" x2="170" y2="30" stroke="#FFBF00" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="h3">Amber slash</div>
+        <p class="caption">A single diagonal stroke. Emphasis only. Never replaces a rule, never an arrow, never a CTA underline.</p>
+      </div>
+      <div class="motif">
+        <div class="frame" style="background:#112717;">
+          <svg viewBox="0 0 200 120" width="80%" aria-hidden="true">
+            <g stroke="#FFF7E4" stroke-width="2" stroke-linecap="round">
+              <path d="M40 40 l 20 3"/>
+              <path d="M55 55 l 16 -2"/>
+              <path d="M110 70 l 22 -4"/>
+              <path d="M130 85 l 14 2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="h3">White brushstrokes</div>
+        <p class="caption">Small hand-drawn scratches. Used only beside pull-quotes, headline numbers or signatures. On Forest Ink only.</p>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Retired motifs</h3>
+    <p class="body muted tight">Fractal veins, pinecone spirals and vortex spirals are out of the system as of v2. Do not reintroduce. If more visual variety is required post-launch we will add deliberately, not by accretion.</p>
+  </div>
+</section>
+
+
+<!-- ========================= 07 DUALITY ========================= -->
+<section class="bk dark" id="duality">
+  <div class="wrap">
+    <div class="running">
+      <span>07 · Duality<span class="dot"></span>Light and dark</span>
+      <span>Section rhythm</span>
+    </div>
+
+    <span class="label">07 Light and dark duality</span>
+    <h2 class="h1">The page breathes<br/>between two states.</h2>
+    <p class="lead muted tight">The site alternates between Cream and Forest Ink at the section level. Transitions are hard, never gradient. The rhythm is the brand.</p>
+
+    <div class="mode pad-t">
+      <div class="m-light">
+        <span class="label">Light mode · Cream</span>
+        <div class="h2">Evidence, narrative, solutions.</div>
+        <p class="body small muted">Used when the reader is being asked to understand. Problem, solution, case studies, the petition ask itself.</p>
+        <ul class="m-list">
+          <li>The Petition</li>
+          <li>The Problem</li>
+          <li>The Solution</li>
+          <li>Case Studies</li>
+        </ul>
+      </div>
+      <div class="m-dark">
+        <span class="label" style="color: var(--chartreuse);">Dark mode · Forest Ink</span>
+        <div class="h2" style="color: var(--cream);">Declaration, stakes, call.</div>
+        <p class="body small" style="color: rgba(255,247,228,.7);">Used when the reader is being moved. Hero, the critical flaw, the innovation gap, the coalition call.</p>
+        <ul class="m-list" style="color: rgba(255,247,228,.85);">
+          <li>Hero</li>
+          <li>The Critical Flaw</li>
+          <li>The Innovation Gap</li>
+          <li>Join the BioRevolution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 08 COMPONENTS ========================= -->
+<section class="bk light" id="components">
+  <div class="wrap">
+    <div class="running">
+      <span>08 · Components<span class="dot"></span>Live demos</span>
+      <span>Buttons · Cards · Stats · Progress</span>
+    </div>
+
+    <span class="label">08 Components</span>
+    <h2 class="h1">A small library.<br/>Every state defined.</h2>
+    <p class="lead muted tight">The component set is deliberately short. Any surface in the system is resolvable to one of these pieces. New components are added by the design lead, not by the implementer.</p>
+
+    <hr class="rule" />
+
+    <!-- 8.1 Buttons -->
+    <div class="two">
+      <div>
+        <h3 class="h2">8.1 Buttons</h3>
+        <p class="body muted">Primary is Leaf Green on any background. Hover shifts to Chartreuse. Focus ring is a 2px Chartreuse outline, 2px offset. Secondary is an outlined variant for dark heroes and dense layouts.</p>
+        <p class="caption">Try hovering.</p>
+      </div>
+      <div>
+        <div class="btn-row pad-t">
+          <a class="btn" href="#">Sign the petition</a>
+          <a class="btn secondary" href="#">Join the coalition</a>
+        </div>
+        <div class="btn-row" style="margin-top: 20px;">
+          <button class="btn" disabled style="opacity:.4; pointer-events:none;">Disabled state</button>
+          <a class="btn" href="#" style="background: var(--chartreuse);">Hover state</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- 8.2 Hex card -->
+    <div class="two">
+      <div>
+        <h3 class="h2">8.2 Hex card</h3>
+        <p class="body muted">A keylined card with a Voronoi pattern in the background at 8% opacity. On hover, opacity rises to 22% over 250ms. Used in 2x2 grids for The Critical Flaw and similar breakdowns.</p>
+      </div>
+      <div style="--voronoi-bg: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><g stroke=\"%23112717\" stroke-width=\"2\" fill=\"none\"><path d=\"M20 55 L 60 70 L 90 40 L 100 10\"/><path d=\"M60 70 L 80 110 L 40 130 L 20 90\"/><path d=\"M80 110 L 120 100 L 140 60 L 170 40\"/><path d=\"M120 100 L 150 130 L 170 110 L 180 55\"/><path d=\"M40 130 L 70 160 L 50 180 L 20 145\"/><path d=\"M70 160 L 110 155 L 130 180 L 100 190\"/><path d=\"M110 155 L 150 150 L 170 180 L 180 145\"/></g></svg>');">
+        <div class="hex-card">
+          <div class="n">Flaw 01</div>
+          <h4>No coherent policy signal.</h4>
+          <p>Bio-based carbon sits across four government departments and no single strategy. Industry cannot invest at scale without a clear lead.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- 8.3 Stat block -->
+    <div class="two">
+      <div>
+        <h3 class="h2">8.3 Stat block</h3>
+        <p class="body muted">A stacked trio: label, numeral, sentence. The numeral does the work. Source line is set at 60% opacity in Inter.</p>
+      </div>
+      <div>
+        <div class="stat">
+          <span class="lbl">Annual innovation gap</span>
+          <span class="num">£0.5 bn</span>
+          <span class="desc">The UK's bio-based sector is underfunded relative to peer economies by this amount every year.</span>
+          <span class="src">Source: BEIS Bio-economy Review, 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- 8.4 Progress bar -->
+    <div class="two">
+      <div>
+        <h3 class="h2">8.4 Progress bar</h3>
+        <p class="body muted">The counter that carries the page. 24px track, Leaf Green fill, live count in Archivo 900 above the fill end. After 10,000 signatures, the "GOVERNMENT MUST RESPOND" caption replaces the counter.</p>
+      </div>
+      <div>
+        <div class="progress">
+          <div class="count">6,423</div>
+          <div class="track"><div class="fill"></div></div>
+          <div class="cap">Of 10,000 needed for government response</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <!-- 8.5 Section header -->
+    <div class="two">
+      <div>
+        <h3 class="h2">8.5 Section header</h3>
+        <p class="body muted">Optional hex mark on the left at 40px, pattern-filled. H2 in Archivo 800. 120px top padding, 80px bottom.</p>
+      </div>
+      <div>
+        <div class="section-header-demo">
+          <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+            <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#24B101" stroke-width="2"/>
+            <path d="M10 14 C 16 12, 22 16, 28 22" stroke="#24B101" stroke-width="1" fill="none"/>
+          </svg>
+          <h3>The Critical Flaw</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 09 VOICE ========================= -->
+<section class="bk dark" id="voice">
+  <div class="wrap">
+    <div class="running">
+      <span>09 · Voice<span class="dot"></span>Tone</span>
+      <span>Authoritative but accessible</span>
+    </div>
+
+    <span class="label">09 Voice and tone</span>
+    <h2 class="h1">Write like a white paper.<br/>Land like a campaign.</h2>
+    <p class="lead muted tight">We are explaining industrial policy to three audiences at once. Serious, not solemn. Direct, not blunt. Never preachy. Never jargon without translation.</p>
+
+    <div class="voice-row pad-t">
+      <div class="voice">
+        <div class="axis">Register</div>
+        <div class="yes">Authoritative, accessible</div>
+        <div class="no">Academic, jargon-heavy</div>
+      </div>
+      <div class="voice">
+        <div class="axis">Energy</div>
+        <div class="yes">Urgent, composed</div>
+        <div class="no">Alarmed, preachy</div>
+      </div>
+      <div class="voice">
+        <div class="axis">Posture</div>
+        <div class="yes">Coalition brief</div>
+        <div class="no">Protest site</div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <h3 class="h2">Sentences that sound right</h3>
+    <ul class="rules-list">
+      <li><span class="num">Yes</span><span>"Carbon is a building block of modern life. Today, most of it comes from fossil fuels."</span></li>
+      <li><span class="num">Yes</span><span>"The problem is not a lack of innovation. It is a lack of coherent policy."</span></li>
+      <li><span class="num">Yes</span><span>"Support the transition to bio-based carbon for the future economy."</span></li>
+      <li><span class="num">No</span><span>"Let's save the planet together with the power of biology!" <em class="muted">(too campaign, too soft)</em></span></li>
+      <li><span class="num">No</span><span>"Bio-based polymer feedstock optimisation within a circular industrial matrix." <em class="muted">(too jargon, no translation)</em></span></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ========================= 10 WRITING RULES ========================= -->
+<section class="bk light" id="writing">
+  <div class="wrap">
+    <div class="running">
+      <span>10 · Writing<span class="dot"></span>House style</span>
+      <span>British English · Hyphens only</span>
+    </div>
+
+    <span class="label">10 Writing rules</span>
+    <h2 class="h1">Six rules. Apply every time.</h2>
+
+    <ol class="rules-list pad-t">
+      <li><span class="num">01</span><span><strong>British English, always.</strong> Colour, organisation, programme, behaviour, realise. Check every draft.</span></li>
+      <li><span class="num">02</span><span><strong>Hyphens only.</strong> No em-dashes, no en-dashes. If you need a pause, start a new sentence.</span></li>
+      <li><span class="num">03</span><span><strong>Numerals carry weight.</strong> Spell out one to nine. Use numerals from 10 upward. Always use numerals in stat blocks.</span></li>
+      <li><span class="num">04</span><span><strong>Jargon gets a translation.</strong> "Bio-based carbon" is followed the first time by "carbon from plants and microbes, not fossil fuels".</span></li>
+      <li><span class="num">05</span><span><strong>Cite the source inline where it matters.</strong> Never borrow authority without attribution. Source line in caption style, Sage.</span></li>
+      <li><span class="num">06</span><span><strong>Short sentences in the hero. Long sentences in the brief.</strong> Modulate by context.</span></li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ========================= 11 APPLICATION ========================= -->
+<section class="bk dark" id="application">
+  <div class="wrap">
+    <div class="running">
+      <span>11 · Application<span class="dot"></span>In use</span>
+      <span>Hero and social</span>
+    </div>
+
+    <span class="label">11 Application</span>
+    <h2 class="h1">The system, applied.</h2>
+    <p class="lead muted tight">Two canonical applications. A web hero and a social card. Any future asset should resolve visually to one of these two templates before it is released.</p>
+
+    <!-- Applied hero -->
+    <div class="pad-t">
+      <h3 class="h2" style="color: var(--cream);">Web hero</h3>
+      <div class="app-hero">
+        <div>
+          <div class="small">BioRevolution Coalition</div>
+          <div class="lockup">
+            <div class="one">Biology,</div>
+            <div class="rule-line"></div>
+            <div class="two-l">Engineered for growth</div>
+          </div>
+          <p class="lead" style="color: rgba(255,247,228,.85); margin-top: 28px; max-width: 50ch;">Support the transition to bio-based carbon for the future economy.</p>
+          <div class="btn-row" style="margin-top: 28px;">
+            <a class="btn" href="#">Sign the petition</a>
+            <a class="btn secondary" href="#">Join the coalition</a>
+          </div>
+        </div>
+        <div class="app-hero-art">
+          <svg viewBox="0 0 400 400" width="100%" aria-hidden="true">
+            <defs>
+              <clipPath id="hxApp"><polygon points="200,20 360,110 360,290 200,380 40,290 40,110"/></clipPath>
+            </defs>
+            <polygon points="200,20 360,110 360,290 200,380 40,290 40,110" fill="none" stroke="#DBE801" stroke-width="2.5"/>
+            <g clip-path="url(#hxApp)" stroke="#DBE801" stroke-width="1.5" fill="none" opacity=".9">
+              <path d="M40 110 L 110 130 L 170 80 L 200 20"/>
+              <path d="M110 130 L 160 180 L 100 230 L 50 190 L 40 110"/>
+              <path d="M160 180 L 230 160 L 270 110 L 310 60 L 200 20"/>
+              <path d="M230 160 L 290 220 L 340 170 L 360 110 L 310 60"/>
+              <path d="M100 230 L 150 280 L 90 320 L 40 270 L 50 190"/>
+              <path d="M150 280 L 220 270 L 250 330 L 190 360 L 90 320"/>
+              <path d="M220 270 L 290 280 L 320 330 L 290 370 L 250 330"/>
+              <path d="M290 280 L 340 230 L 360 210 L 360 290 L 320 330"/>
+              <path d="M200 20 L 200 160 L 290 220"/>
+            </g>
+            <g stroke="#24B101" stroke-width="2" fill="none" stroke-linecap="round">
+              <path d="M260 240 C 300 260, 330 300, 360 350 C 380 380, 395 395, 400 400"/>
+              <path d="M300 280 C 330 310, 350 340, 370 370"/>
+              <path d="M320 310 C 340 330, 360 340, 380 360"/>
+            </g>
+            <line x1="60" y1="360" x2="130" y2="310" stroke="#FFBF00" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="pad-t">
+      <h3 class="h2" style="color: var(--cream);">Social card</h3>
+      <div class="three">
+        <figure style="margin:0;">
+          <img src="Images/The%20Ecology%20Expo%20-%20socials2.png" alt="Social card, dark variant" style="width:100%; border: 1px solid var(--hairline-ink);" />
+          <figcaption class="caption pad-t">Dark variant · Forest Ink · Chartreuse accent on strapline</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="Images/The%20Ecology%20Expo%20-%20socials1.png" alt="Social card, light variant" style="width:100%; border: 1px solid var(--hairline-ink);" />
+          <figcaption class="caption pad-t">Light variant · Cream · Forest Ink strapline</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="Images/The%20Ecology%20Expo%20-%20socials4.png" alt="Social card, duality variant" style="width:100%; border: 1px solid var(--hairline-ink);" />
+          <figcaption class="caption pad-t">Duality variant · split canvas · Voronoi hex bleed</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= 12 PLAN ========================= -->
+<section class="bk light" id="plan">
+  <div class="wrap">
+    <div class="running">
+      <span>12 · Plan<span class="dot"></span>Website build</span>
+      <span>Single-page advocacy site</span>
+    </div>
+
+    <span class="label">12 Website build plan</span>
+    <h2 class="h1">From system to site,<br/>in five phases.</h2>
+    <p class="lead muted tight">The brandbook is the contract. The website is the delivery. This is the phased path from this document to a launched petition site, targeting Mon 20 Apr 2026.</p>
+
+    <ol class="rules-list pad-t">
+      <li><span class="num">P1</span><span><strong>Foundation.</strong> Single HTML file or Next.js app, Tailwind extended with the tokens in Section 03. Self-host Archivo + Archivo Narrow + Inter. Wire up reduced-motion, focus rings, and a lighthouse-safe base. <em class="muted">Output: empty page that passes accessibility and renders tokens.</em></span></li>
+      <li><span class="num">P2</span><span><strong>Component kit.</strong> Build the eight components in Section 08 plus nav, footer, form inputs and the SVG motif library as reusable blocks. Storybook or a simple components page for internal review. <em class="muted">Output: a component inventory that matches this brandbook 1:1.</em></span></li>
+      <li><span class="num">P3</span><span><strong>Sections in order.</strong> Assemble the nine sections from the brief: Hero, Petition, Critical Flaw, Problem, Innovation Gap, Solution, Case Studies, Join, Footer. Alternate Cream and Forest Ink per Section 07. Copy is golden from the campaign master doc; do not rewrite. <em class="muted">Output: a scrollable page, no animation yet, content locked.</em></span></li>
+      <li><span class="num">P4</span><span><strong>Animation and data.</strong> Add the five permitted animations only: hero scroll-morph, Odometer petition count, GSAP DrawSVG on the Solution roadmap, card hover Voronoi, section colour transitions. Wire the petition counter to <span class="kbd">petition.parliament.uk/petitions/{id}.json</span> via a 15-minute server-side cache. Dynamic OG image via <span class="kbd">@vercel/og</span>. <em class="muted">Output: site feels alive, data is live.</em></span></li>
+      <li><span class="num">P5</span><span><strong>Harden and ship.</strong> Lighthouse pass: LCP under 2.0s, CLS under 0.1, TBT under 200ms. SVGO all motifs. Staging link for stakeholder review. One copy review, one design review, one technical review. Production deploy, preview-first. <em class="muted">Output: live site at T-5.</em></span></li>
+    </ol>
+
+    <hr class="rule" />
+
+    <div class="two">
+      <div>
+        <h3 class="h2">What is in scope</h3>
+        <ul class="body" style="padding-left:18px;">
+          <li>Single-page scrolling site</li>
+          <li>Live petition counter with graceful fallback</li>
+          <li>Three audience CTAs in hero</li>
+          <li>Coalition logo strip in footer (hard-coded at launch)</li>
+          <li>Dynamic OG image with live count</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h2">What is out of scope for v1</h3>
+        <ul class="body" style="padding-left:18px;">
+          <li>MP champion module</li>
+          <li>News and updates feed</li>
+          <li>Generative signature mosaic</li>
+          <li>Parallax throughout, Three.js hero</li>
+          <li>Second-language versions</li>
+          <li>Coalition member CMS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================= COLOPHON ========================= -->
+<footer class="colophon" id="colophon">
+  <div class="wrap">
+    <div class="running" style="color: rgba(255,247,228,.6)">
+      <span>BioRevolution Coalition<span class="dot"></span>Brand &amp; Design System</span>
+      <span>Colophon</span>
+    </div>
+
+    <div class="lockup" style="margin: 40px 0;">
+      <div class="one" style="color: var(--cream);">Biology,</div>
+      <div class="rule-line" style="background: var(--chartreuse);"></div>
+      <div class="two-l" style="color: var(--chartreuse);">Engineered for growth</div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <h5>Design system</h5>
+        <p>Jen Vanderhoven<br/>via Charles Newman, Resource Media</p>
+      </div>
+      <div>
+        <h5>Copy</h5>
+        <p>Charles Newman</p>
+      </div>
+      <div>
+        <h5>Technical</h5>
+        <p>Charles Newman</p>
+      </div>
+      <div>
+        <h5>Version</h5>
+        <p>v2.0 · 15 April 2026<br/>Supersedes v1 brief</p>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <p class="small" style="color: rgba(255,247,228,.55);">This document is the controlling source of truth for the BioRevolution Coalition brand. Where conflicts arise between supplied assets, supplier decks or in-flight work, this document wins. Next review: T+30 post-launch.</p>
+  </div>
+</footer>
+
+</body>
+</html>
