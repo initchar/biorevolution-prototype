@@ -713,10 +713,11 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 .dark .stat .lbl { color: var(--chartreuse); }
 .stat .num {
   font-weight: 900;
-  font-size: clamp(64px, 9vw, 120px);
-  line-height: .9;
+  font-size: clamp(48px, 5.8vw, 84px);
+  line-height: .95;
   letter-spacing: -.02em;
   color: var(--leaf-green);
+  word-break: keep-all;
 }
 .dark .stat .num { color: var(--chartreuse); }
 .stat .desc { font-weight: 600; font-size: 19px; max-width: 28ch; }
@@ -737,14 +738,14 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 }
 .case::before {
   content: "";
-  position: absolute; inset: 0;
-  opacity: .08;
+  position: absolute;
+  top: -20%; right: -15%; bottom: -20%; left: -15%;
+  background: url("Images/Organic-Lattice1.svg") no-repeat right center / cover;
+  opacity: .05;
   pointer-events: none;
   transition: opacity 250ms var(--ease-organic);
 }
-.case.voronoi::before { background: var(--voronoi-cream) center/cover; }
-.case.mycelium::before { background: var(--mycelium-ink) center/cover; opacity: .10; }
-.case:hover::before { opacity: .16; }
+.case:hover::before { opacity: .08; }
 
 .case > summary {
   display: grid;
@@ -976,6 +977,215 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   font-family: var(--font-meta);
   font-size: 12px;
   color: rgba(255,247,228,.5);
+}
+
+/* =============================================================
+   Carbon-compare diagram (Two ways we use carbon)
+   ============================================================= */
+.carbon-compare {
+  margin: clamp(48px, 6vh, 80px) 0;
+  padding: 0;
+}
+.carbon-compare-title {
+  font-weight: 800;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -.005em;
+  margin-bottom: clamp(24px, 3vh, 32px);
+  color: var(--forest-ink);
+  max-width: 40ch;
+}
+.carbon-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 880px) {
+  .carbon-compare-grid { grid-template-columns: 1fr; }
+}
+.carbon-side {
+  border: 1px solid var(--hairline);
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+}
+.carbon-side-head {
+  padding: 20px 24px 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+.carbon-side-tag {
+  font-family: var(--font-narrow);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 4px;
+}
+.carbon-side.bio .carbon-side-tag { color: var(--leaf-green); }
+.carbon-side-sub {
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -.005em;
+  margin-bottom: 10px;
+  color: var(--forest-ink);
+}
+.carbon-side-cap {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--sage);
+  margin: 0;
+  max-width: 48ch;
+}
+.carbon-side-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================================
+   BioSolutions explainer section (S4.5)
+   ============================================================= */
+.biosol-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+}
+@media (max-width: 720px) {
+  .biosol-grid { grid-template-columns: 1fr; }
+}
+.biosol-block {
+  padding: 28px;
+  background: var(--cream);
+  border: 1px solid var(--hairline);
+}
+.biosol-block h3 {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -.005em;
+  margin: 0 0 14px;
+  color: var(--forest-ink);
+}
+.biosol-block p {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.biosol-block p:last-child { margin-bottom: 0; }
+.biosol-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.biosol-list li {
+  position: relative;
+  padding: 8px 0 8px 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  border-top: 1px solid var(--hairline);
+}
+.biosol-list li:first-child { border-top: 0; padding-top: 2px; }
+.biosol-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 16px;
+  width: 8px; height: 8px;
+  background: var(--leaf-green);
+  transform: rotate(45deg);
+}
+.biosol-list li:first-child::before { top: 10px; }
+.biosol-callout {
+  display: flex !important;
+  align-items: baseline;
+  gap: 14px;
+  padding: 16px;
+  background: var(--forest-ink);
+  color: var(--cream);
+  margin: 16px 0 0 !important;
+}
+.biosol-callout-num {
+  font-weight: 900;
+  font-size: 36px;
+  letter-spacing: -.02em;
+  color: var(--chartreuse);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.biosol-callout-desc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255,247,228,.85);
+}
+
+/* =============================================================
+   Innovation Gap — GVA treatment
+   ============================================================= */
+.gap-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15em;
+  justify-content: center;
+}
+.gap-stat-unit {
+  font-family: var(--font-narrow);
+  font-weight: 600;
+  font-size: clamp(18px, 2.4vw, 32px);
+  letter-spacing: .18em;
+  color: var(--chartreuse);
+  margin-left: 0.3em;
+  text-transform: uppercase;
+  align-self: baseline;
+}
+.gap-subline {
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--cream);
+  opacity: .88;
+  margin: 0 auto 40px;
+  max-width: 36ch;
+}
+
+/* =============================================================
+   Case study body — sub-heads + lists
+   ============================================================= */
+.case .case-body h4 {
+  font-family: var(--font-narrow);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--leaf-green);
+  margin: 24px 0 10px;
+}
+.case .case-body h4:first-child { margin-top: 0; }
+.case .case-body p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.case-dl { margin: 12px 0 0; }
+.case-dl dt {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--forest-ink);
+  margin-top: 12px;
+  margin-bottom: 4px;
+  letter-spacing: -.005em;
+}
+.case-dl dd {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--forest-ink);
+}
+.case-bullets {
+  margin: 8px 0 12px;
+  padding-left: 18px;
+}
+.case-bullets li {
+  margin-bottom: 4px;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 /* =============================================================
