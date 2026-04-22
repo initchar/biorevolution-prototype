@@ -489,6 +489,22 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 }
 .hex-card:hover::before { opacity: .22; }
 .hex-card:hover { transform: translateY(-3px); }
+
+/* Organic growth vector variant (Flaw 01, Flaw 02) */
+.hex-card.organic::before {
+  background-image: none;
+  background-color: var(--chartreuse);
+  -webkit-mask-image: url("Images/Organic%20growth%20vector.svg");
+          mask-image: url("Images/Organic%20growth%20vector.svg");
+  -webkit-mask-size: 160% auto;
+          mask-size: 160% auto;
+  -webkit-mask-position: right 20%;
+          mask-position: right 20%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  opacity: .09;
+}
+.hex-card.organic:hover::before { opacity: .16; }
 .hex-card .n {
   font-family: var(--font-narrow);
   font-weight: 600; font-size: 12px;
