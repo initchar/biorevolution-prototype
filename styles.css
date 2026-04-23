@@ -89,6 +89,11 @@ section.bk {
 }
 section.bk.dark  { background: var(--bg-inverse); color: var(--text-inverse); }
 section.bk.light { background: var(--bg-default); color: var(--text-default); }
+
+/* Tighten the seam between the carbon-compare diagrams (end of #problem)
+   and the BioSolutions explainer — halves the combined section padding */
+#problem { padding-bottom: clamp(40px, 6vh, 80px); }
+#biosolutions { padding-top: clamp(40px, 6vh, 80px); }
 .wrap { max-width: var(--max); margin: 0 auto; position: relative; }
 
 /* Running header */
@@ -128,7 +133,7 @@ section.bk.light { background: var(--bg-default); color: var(--text-default); }
    ============================================================= */
 .h1 {
   font-weight: 900;
-  font-size: clamp(44px, 6.2vw, 96px);
+  font-size: clamp(40px, 5.6vw, 86px);
   line-height: .96; letter-spacing: -.02em;
   margin: 0 0 .4em;
 }
@@ -158,7 +163,22 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 .pad-t { padding-top: clamp(40px, 6vh, 72px); }
 .pad-b { padding-bottom: clamp(40px, 6vh, 72px); }
 .tight { max-width: 42ch; }
+.tight.wider { max-width: 53ch; }
+.tight.widest { max-width: 64ch; }
 .small { font-size: 14px; }
+
+/* Inline text link (used inside body copy where the URL is not yet wired up) */
+.text-link {
+  color: var(--leaf-green);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color 150ms var(--ease-organic), text-decoration-color 150ms var(--ease-organic);
+}
+.text-link:hover { color: var(--forest-ink); text-decoration-color: var(--leaf-green); }
+.dark .text-link { color: var(--chartreuse); }
+.dark .text-link:hover { color: var(--cream); }
 
 /* =============================================================
    Strapline lockup
@@ -395,7 +415,7 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
    ============================================================= */
 .petition-grid {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(40px, 6vw, 96px);
   align-items: start;
 }
@@ -404,11 +424,14 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 .progress { margin-top: 8px; }
 .progress .count {
   font-weight: 900;
-  font-size: clamp(56px, 8vw, 96px);
+  font-size: clamp(48px, 6.8vw, 82px);
   line-height: 1;
   color: var(--leaf-green);
   letter-spacing: -.02em;
 }
+
+/* Petition h1 sized down a touch further than the global section header */
+#petition .h1 { font-size: clamp(37px, 5.27vw, 82px); }
 .dark .progress .count { color: var(--chartreuse); }
 .progress .track {
   height: 24px;
@@ -623,10 +646,14 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   pointer-events: none;
 }
 .gap-section .wrap { position: relative; max-width: 960px; }
-.gap-section .label { color: var(--chartreuse); }
+.gap-section .label {
+  color: var(--chartreuse);
+  display: flex;
+  justify-content: center;
+}
 .gap-section .gap-stat {
   font-weight: 900;
-  font-size: clamp(88px, 18vw, 240px);
+  font-size: clamp(70px, 14.4vw, 154px);
   line-height: .9;
   letter-spacing: -.035em;
   color: var(--chartreuse);
@@ -972,9 +999,28 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   color: rgba(255,247,228,.4);
   border: 1px dashed rgba(255,247,228,.2);
   filter: grayscale(100%);
-  transition: filter 200ms var(--ease-organic), color 200ms var(--ease-organic);
+  transition: filter 200ms var(--ease-organic),
+              color 200ms var(--ease-organic),
+              opacity 200ms var(--ease-organic);
 }
 .coalition-strip .logo-slot:hover { filter: grayscale(0); color: var(--cream); }
+
+/* Real-logo variant: cream backplate so brand colours survive on dark footer */
+.coalition-strip .logo-slot.has-logo {
+  border: 0;
+  background: var(--cream);
+  padding: 8px 14px;
+  height: 56px;
+  filter: none;
+  opacity: .92;
+}
+.coalition-strip .logo-slot.has-logo:hover { opacity: 1; filter: none; }
+.coalition-strip .logo-slot.has-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
 
 .foot-meta {
   display: flex; flex-wrap: wrap;
@@ -1025,7 +1071,6 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   letter-spacing: -.005em;
   margin-bottom: clamp(24px, 3vh, 32px);
   color: var(--forest-ink);
-  max-width: 40ch;
 }
 .carbon-compare-grid {
   display: grid;
@@ -1086,10 +1131,71 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 @media (max-width: 720px) {
   .biosol-grid { grid-template-columns: 1fr; }
 }
+/* Elevated feature stat — sits between the BioSolutions intro and the four cards */
+.biosol-feature {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  padding: clamp(28px, 4vh, 44px) clamp(28px, 4vw, 48px);
+  margin: clamp(32px, 4vh, 48px) 0 0;
+  background: var(--forest-ink);
+  color: var(--cream);
+  border-left: 4px solid var(--chartreuse);
+  overflow: hidden;
+}
+.biosol-feature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--mycelium-ink);
+  background-size: cover;
+  background-position: right center;
+  opacity: .12;
+  pointer-events: none;
+}
+.biosol-feature-num {
+  position: relative;
+  font-weight: 900;
+  font-size: clamp(56px, 7vw, 88px);
+  letter-spacing: -.025em;
+  line-height: 1;
+  color: var(--chartreuse);
+  flex-shrink: 0;
+}
+.biosol-feature-desc {
+  position: relative;
+  font-weight: 500;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.45;
+  max-width: 50ch;
+  color: rgba(255, 247, 228, .92);
+}
+@media (max-width: 600px) {
+  .biosol-feature { flex-direction: column; gap: 8px; align-items: flex-start; }
+}
+
+/* Four-card explainer grid */
 .biosol-block {
-  padding: 28px;
+  position: relative;
+  padding: 36px 28px 28px;
   background: var(--cream);
   border: 1px solid var(--hairline);
+  transition: transform 220ms var(--ease-organic),
+              box-shadow 220ms var(--ease-organic),
+              border-color 220ms var(--ease-organic);
+}
+.biosol-block::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--leaf-green);
+}
+.biosol-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(17, 39, 23, .08);
+  border-color: transparent;
 }
 .biosol-block h3 {
   font-weight: 800;
@@ -1126,28 +1232,28 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   transform: rotate(45deg);
 }
 .biosol-list li:first-child::before { top: 10px; }
-.biosol-callout {
-  display: flex !important;
-  align-items: baseline;
-  gap: 14px;
-  padding: 16px;
+
+/* Brand-colour accents per card */
+.biosol-block.accent-leaf::before  { background: var(--leaf-green); }
+.biosol-block.accent-amber::before { background: var(--amber); }
+.biosol-block.accent-sage::before  { background: var(--sage); }
+.biosol-block.accent-ink::before   { background: var(--chartreuse); }
+
+.biosol-block.accent-amber .biosol-list li::before { background: var(--amber); }
+.biosol-block.accent-sage  .biosol-list li::before { background: var(--sage); }
+
+/* Card 4 ("Why they matter") flips dark — visual finale */
+.biosol-block.accent-ink {
   background: var(--forest-ink);
   color: var(--cream);
-  margin: 16px 0 0 !important;
+  border-color: transparent;
 }
-.biosol-callout-num {
-  font-weight: 900;
-  font-size: 36px;
-  letter-spacing: -.02em;
-  color: var(--chartreuse);
-  line-height: 1;
-  flex-shrink: 0;
+.biosol-block.accent-ink h3 { color: var(--chartreuse); }
+.biosol-block.accent-ink .biosol-list li {
+  border-top-color: rgba(255, 247, 228, .12);
 }
-.biosol-callout-desc {
-  font-size: 13px;
-  line-height: 1.4;
-  color: rgba(255,247,228,.85);
-}
+.biosol-block.accent-ink .biosol-list li::before { background: var(--chartreuse); }
+.biosol-block.accent-ink:hover { box-shadow: 0 10px 32px rgba(0, 0, 0, .25); }
 
 /* =============================================================
    Innovation Gap — GVA treatment
