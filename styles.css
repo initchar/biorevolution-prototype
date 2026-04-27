@@ -90,9 +90,9 @@ section.bk {
 section.bk.dark  { background: var(--bg-inverse); color: var(--text-inverse); }
 section.bk.light { background: var(--bg-default); color: var(--text-default); }
 
-/* Tighten the seam between the carbon-compare diagrams (end of #problem)
+/* Tighten the seam between the carbon-compare diagrams (end of #situation)
    and the BioSolutions explainer — halves the combined section padding */
-#problem { padding-bottom: clamp(40px, 6vh, 80px); }
+#situation { padding-bottom: clamp(40px, 6vh, 80px); }
 #biosolutions { padding-top: clamp(40px, 6vh, 80px); }
 .wrap { max-width: var(--max); margin: 0 auto; position: relative; }
 
@@ -854,40 +854,6 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
 }
 .case .case-body p { margin: 0 0 1em; font-size: 17px; line-height: 1.6; }
 
-/* Fossil vs bio table */
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 24px;
-  background: var(--cream);
-  font-size: 15px;
-}
-.compare-table th,
-.compare-table td {
-  padding: 14px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--hairline);
-  vertical-align: top;
-}
-.compare-table thead th {
-  font-family: var(--font-narrow);
-  font-weight: 600; font-size: 12px;
-  letter-spacing: .22em; text-transform: uppercase;
-  background: transparent;
-}
-.compare-table thead th.col-fossil { color: var(--fossil-dark); border-bottom: 2px solid var(--fossil-dark); }
-.compare-table thead th.col-bio    { color: var(--leaf-green); border-bottom: 2px solid var(--leaf-green); }
-.compare-table td.col-fossil { color: var(--fossil-dark); }
-.compare-table td.col-bio    { color: var(--forest-ink); font-weight: 600; }
-.compare-table th:first-child,
-.compare-table td:first-child {
-  font-family: var(--font-narrow);
-  font-weight: 600; font-size: 12px;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--sage);
-  width: 24%;
-}
-
 /* =============================================================
    S8  JOIN  (dark)
    ============================================================= */
@@ -1324,6 +1290,43 @@ hr.rule { height: 1px; background: var(--hairline); border: 0; margin: clamp(40p
   margin-bottom: 4px;
   font-size: 15px;
   line-height: 1.55;
+}
+
+/* =============================================================
+   Dark-mode overrides for Status quo section (was light, now dark)
+   ============================================================= */
+section.bk.dark .pull-quote {
+  color: var(--cream);
+  border-left-color: var(--chartreuse);
+}
+section.bk.dark .carbon-compare-title { color: var(--cream); }
+
+/* =============================================================
+   Coalition role labels (Campaign Lead / Coalition member)
+   ============================================================= */
+.coalition-strip .logo-slot { flex-direction: column; gap: 6px; }
+.coalition-strip .logo-slot .role-label {
+  font-family: var(--font-narrow);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255, 247, 228, .55);
+  line-height: 1;
+}
+.coalition-strip .logo-slot.lead .role-label { color: var(--chartreuse); }
+.coalition-strip .logo-slot.has-logo {
+  height: auto;
+  min-height: 72px;
+  padding: 10px 14px;
+}
+.coalition-strip .logo-slot.has-logo .role-label {
+  color: var(--forest-ink);
+  opacity: .55;
+}
+.coalition-strip .logo-slot.has-logo.lead .role-label {
+  color: var(--leaf-green);
+  opacity: 1;
 }
 
 /* =============================================================
